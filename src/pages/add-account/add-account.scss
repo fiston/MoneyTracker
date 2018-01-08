@@ -1,4 +1,4 @@
-page-home {
+page-add-account {
     form {
         margin-bottom: 32px;
         button {
@@ -17,5 +17,13 @@ page-home {
     
       ion-input {
         padding: 5px;
+      }
+    
+      .invalid {
+        border-bottom: 1px solid #FF6153;
+      }
+    
+      .error-message .item-inner {
+        border-bottom: 0 !important;
       }
 }

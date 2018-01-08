@@ -11,4 +11,8 @@ export class HomePage {
 
   }
 
+  addAccount(){
+    this.navCtrl.push('AddAccountPage');
+  }
+
 }
