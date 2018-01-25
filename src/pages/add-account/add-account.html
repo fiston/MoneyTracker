@@ -6,22 +6,17 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <form [formGroup]="addAccountForm" (submit)="addAccount()" novalidate>
     <ion-item>
       <ion-label stacked>Name</ion-label>
-      <ion-input placeholder="Your account name"></ion-input>
+      <ion-input placeholder="Your account name" [(ngModel)]="account.accountName"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Type</ion-label>
-      <ion-select>
-        <ion-option value="curr">Current Account</ion-option>
-        <ion-option value="save">Savings Account</ion-option>
-        <ion-option value="cred">Credit Card</ion-option>
-      </ion-select>
-    </ion-item>
+        <ion-label stacked>Current Balance</ion-label>
+        <ion-input type="number" [(ngModel)]="account.accountBalance"></ion-input>
+      </ion-item>
 
-    <button ion-button block type="submit"></button>
-  </form>
-</ion-content>
+    <button ion-button block type="submit" id="addAccount" (click)="addAccount(account)">
+      Add Account
+    </button>
+  </ion-content>

@@ -1,7 +1,8 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Account } from './../../models/account.interface';
+import { AngularFireDatabase } from 'angularfire2/database';
+import firebase from 'firebase/app';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Loading, AlertController, LoadingController } from 'ionic-angular';
-import { EmailValidator } from '../../validators/email';
+import { IonicPage, NavController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -10,27 +11,18 @@ import { EmailValidator } from '../../validators/email';
 })
 export class AddAccountPage {
 
-  addAccountForm: FormGroup;
-  loading: Loading;
+  account = {} as Account
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public formBuilder: FormBuilder, public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController) {
-    
-      this.addAccountForm = formBuilder.group({
-        email: ['', Validators.compose([Validators.required,
-          EmailValidator.isValid])],
-        password: ['', Validators.compose([Validators.minLength(6),
-        Validators.required])]
-      });
-  }
+  constructor(public navCtrl: NavController, afDatabase: AngularFireDatabase) { }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddAccountPage');
-  }
+  addAccount(account: Account) : void {
+    const accountRef:  firebase.database.Reference = firebase.database().ref('/Accounts/');
+    accountRef.push({
+      accountName: this.account.accountName,
+      accountBalance: this.account.accountBalance
+    });
 
-  addAccount(){
-    //Add account here
+    this.navCtrl.pop();
   }
 
 }

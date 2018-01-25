@@ -7,6 +7,12 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let account of accounts | async">
+      <h2>Account: {{account.accountName}}</h2>
+      <h3>Balance: {{account.accountBalance | currency:'GBP'}}</h3>
+    </ion-item>
+  </ion-list>
   <button ion-button block clear (click)="addAccount()">
     Add a new account
   </button>
